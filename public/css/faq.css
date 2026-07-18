@@ -90,7 +90,6 @@
   height: 10px;
   border-radius: var(--radius-round);
   background: var(--dot-inactive-bg);
-  /* background: rgba(255, 255, 255, 0.15); */
   transition: all var(--duration-base) var(--ease-smooth);
 }
 
@@ -171,9 +170,7 @@
 
 .btn-no {
   background: var(--btn-secondary-bg);
-  /* background: rgba(255, 255, 255, 0.06); */
   color: var(--color-text-muted);
-  /* border: 1px solid rgba(255, 255, 255, 0.1); */
   border: 1px solid var(--btn-secondary-border);
   padding: var(--space-md) var(--space-2xl);
   font-size: var(--font-size-base);
@@ -192,10 +189,31 @@
   overflow: hidden;
 }
 
-.celebration-heart {
+.celebration-particle {
   position: absolute;
-  font-size: 24px;
-  animation: celebrationFall 3s ease-in forwards;
+  top: -20px;
+  animation: celebrationFall ease-in forwards;
+}
+
+/* Round glowing dot */
+.celebration-dot {
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--color-primary) 55%, transparent 100%);
+  box-shadow: 0 0 10px rgba(255, 107, 157, 0.9), 0 0 4px rgba(255, 255, 255, 0.7);
+}
+
+/* Heart glyph, glowing pink */
+.celebration-heart {
+  color: var(--color-primary);
+  text-shadow: 0 0 12px rgba(255, 107, 157, 0.9), 0 0 5px rgba(255, 255, 255, 0.6);
+  line-height: 1;
+}
+
+/* Star glyph, glowing gold */
+.celebration-star {
+  color: var(--color-accent-gold);
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.85), 0 0 5px rgba(255, 107, 157, 0.5);
+  line-height: 1;
 }
 
 @keyframes celebrationFall {
@@ -205,11 +223,11 @@
   }
   20% {
     opacity: 1;
-    transform: translateY(0) scale(1.2) rotate(30deg);
+    transform: translateY(0) scale(1.1) rotate(30deg);
   }
   100% {
     opacity: 0;
-    transform: translateY(100vh) scale(0.5) rotate(360deg);
+    transform: translateY(100vh) scale(0.6) rotate(360deg);
   }
 }
 
