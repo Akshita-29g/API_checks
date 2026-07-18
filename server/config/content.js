@@ -14,12 +14,12 @@ module.exports = {
   // Images are served from /assets/ so use paths like "/assets/photo1.jpg"
   // or full URLs like "https://example.com/photo.jpg"
   libraryImages: [
-    "/assets/photo1.jpeg",
+    "/assets/photo1.png",
     "/assets/photo2.jpeg",
-    "/assets/photo3.jpeg",
+    "/assets/photo3.png",
     "/assets/photo4.jpeg",
     "/assets/photo5.jpeg",
-    "/assets/photo6.jpeg",
+    "/assets/photo6.png",
   ],
 
   // ─── FAQ Page ─────────────────────────────────────────
