@@ -234,13 +234,6 @@
   }
 
   .disc-container {
-    /* position: relative;
-    right: auto;
-    top: auto;
-    transform: none;
-    width: 320px;
-    height: 320px;
-    margin: 0 auto; */
     position: absolute;
     right: -220px;   /* pushed further right so more of it clips off-screen */
     top: 50%;
@@ -316,97 +309,6 @@
     padding: var(--space-sm) var(--space-md);
   }
 }
-/* ─── Playlist Sparkle Particles ────────────────
-.playlist-particles-container {
-  position: absolute;
-  inset: 0;
-  overflow: visible;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.playlist-particles-container .particle {
-  position: absolute;
-  bottom: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff 0%, var(--color-primary) 60%, transparent 100%);
-  box-shadow: 0 0 8px rgba(255, 107, 157, 0.8);
-  opacity: 0;
-  animation: sparkleRise 6s ease-out forwards;
-} */
-
-
-/* ─── Playlist Sparkle Particles ──────────────── */
-/* .playlist-particles-container {
-  position: absolute;
-  inset: 0;
-  overflow: visible;
-  pointer-events: none;
-  z-index: 1;
-}
- 
-/* Round sparkle dots — size now set inline per-particle in JS */
- /* .playlist-particles-container .particle {
-  position: absolute;
-  bottom: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff 0%, var(--color-primary) 60%, transparent 100%);
-  box-shadow: 0 0 8px rgba(255, 107, 157, 0.8);
-  opacity: 0;
-  animation: sparkleRise 6s ease-out forwards;
-}
- 
-/* Heart-shaped sparkles */
-/* .playlist-particles-container .particle-heart {
-  position: absolute;
-  bottom: 0;
-  color: var(--color-primary);
-  text-shadow: 0 0 10px rgba(255, 107, 157, 0.9);
-  opacity: 0;
-  line-height: 1;
-  animation: sparkleRiseHeart 6s ease-out forwards;
- }
-  */
-/* @keyframes sparkleRise {
-  0% {
-    opacity: 0;
-    transform: translateY(0) scale(0.4);
-  }
-  10% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-220px) scale(1);
-  }
-} */
-  
-/* Hearts drift slightly sideways and rotate a touch as they rise,
-   for a more organic float than the plain dots */
- /* @keyframes sparkleRiseHeart {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.5) rotate(-8deg);
-  }
-  10% {
-    opacity: 1;
-  }
-  50% {
-    transform: translate(10px, -110px) scale(1) rotate(6deg);
-  }
-  70% {
-    opacity: 0.85;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-6px, -230px) scale(1.1) rotate(-4deg);
-  }
-} */
 
 /* ─── Playlist Sparkle Particles ──────────────── */
 .playlist-particles-container {
