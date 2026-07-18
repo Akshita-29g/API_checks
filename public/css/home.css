@@ -1,0 +1,305 @@
+/**
+ * home.css — Home Page Styles
+ * =============================
+ * Floating glass bottle, glowing particles,
+ * letter unfolding animation, and content layout.
+ */
+
+/* ─── Bottle Container ───────────────────────── */
+.bottle-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  min-height: 400px;
+}
+
+.bottle-wrapper {
+  position: relative;
+  cursor: pointer;
+  transition: all var(--duration-slow) var(--ease-smooth);
+}
+
+.bottle-wrapper.hidden {
+  opacity: 0;
+  transform: scale(0.5);
+  pointer-events: none;
+}
+
+/* ─── Glass Bottle ───────────────────────────── */
+.bottle {
+  width: 80px;
+  height: 180px;
+  position: relative;
+  animation: bottleFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 10px 30px rgba(255, 107, 157, 0.3));
+}
+
+@keyframes bottleFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  25%      { transform: translateY(-12px) rotate(1deg); }
+  50%      { transform: translateY(-18px) rotate(3deg); }
+  75%      { transform: translateY(-8px) rotate(0deg); }
+}
+
+/* Bottle neck */
+.bottle-neck {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 35px;
+  background: linear-gradient(180deg, rgba(255,182,193,0.3), rgba(255,182,193,0.15));
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+}
+
+/* Cork */
+.bottle-cork {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 14px;
+  background: linear-gradient(135deg, #d4a574, #c49462);
+  border-radius: 3px 3px 2px 2px;
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.2);
+}
+
+/* Main body */
+.bottle-body {
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 130px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 182, 193, 0.2),
+    rgba(196, 167, 231, 0.15),
+    rgba(255, 215, 0, 0.1)
+  );
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px 8px 20px 20px;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+}
+
+/* Glass reflection */
+.bottle-body::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 6px;
+  width: 8px;
+  height: 60%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent);
+  border-radius: 4px;
+}
+
+/* Inner liquid shimmer */
+.bottle-body::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(0deg, rgba(255, 107, 157, 0.15), transparent);
+  animation: liquidShimmer 3s ease-in-out infinite alternate;
+}
+
+@keyframes liquidShimmer {
+  0%   { opacity: 0.5; height: 35%; }
+  100% { opacity: 1; height: 45%; }
+}
+
+/* Paper scroll inside bottle */
+.bottle-scroll {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 30px;
+  background: #fef0e6;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.bottle-scroll::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 1px;
+  background: rgba(0,0,0,0.15);
+  box-shadow: 0 4px 0 rgba(0,0,0,0.1), 0 8px 0 rgba(0,0,0,0.08);
+}
+
+/* Click hint */
+.bottle-hint {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  letter-spacing: var(--letter-spacing-wide);
+  animation: pulse 2s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+/* ─── Particles ──────────────────────────────── */
+.particles-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--particle-tint) 55%, transparent 100%);
+  box-shadow: 0 0 12px var(--particle-tint), 0 0 5px rgba(255, 255, 255, 0.85);
+  opacity: 0;
+  animation: particleFloat 6s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+  0%   { opacity: 0; transform: translateY(0) scale(0); }
+  20%  { opacity: 0.6; transform: translateY(-20px) scale(1); }
+  80%  { opacity: 0.3; transform: translateY(-80px) scale(0.6); }
+  100% { opacity: 0; transform: translateY(-120px) scale(0); }
+}
+
+/* ─── Letter ─────────────────────────────────── */
+.letter-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 500px;
+  perspective: 800px;
+}
+
+.letter-container.visible {
+  display: flex;
+}
+
+.letter {
+  width: 100%;
+  padding: var(--space-3xl) var(--space-2xl);
+  background: linear-gradient(
+    135deg,
+    rgba(254, 240, 245, 0.95),
+    rgba(255, 230, 240, 0.9)
+  );
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(255, 107, 157, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-align: center;
+  transform-origin: center center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Paper texture overlay */
+.letter::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23f5e6d3' opacity='0.1'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Decorative seal */
+.letter::after {
+  content: '💌';
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  font-size: 24px;
+  opacity: 0.6;
+}
+
+.letter-greeting {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-hero);
+  color: #e84393;
+  margin-bottom: var(--space-lg);
+  font-weight: 700;
+}
+
+.letter-quote {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg);
+  color: #6c5b7b;
+  font-style: italic;
+  line-height: var(--line-height-base);
+  margin-bottom: var(--space-xl);
+  padding: 0 var(--space-md);
+}
+
+.letter-arrow {
+  font-size: var(--font-size-xl);
+  color: var(--color-rose);
+  margin-bottom: var(--space-xl);
+  display: block;
+}
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 768px) {
+  .bottle {
+    width: 65px;
+    height: 150px;
+  }
+
+  .bottle-body {
+    width: 50px;
+    height: 110px;
+  }
+
+  .bottle-neck {
+    width: 16px;
+    height: 28px;
+  }
+
+  .letter {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  .letter-greeting {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .bottle-scene {
+    height: 50vh;
+    min-height: 300px;
+  }
+
+  .letter-greeting {
+    font-size: var(--font-size-2xl);
+  }
+
+  .letter-quote {
+    font-size: var(--font-size-md);
+  }
+}

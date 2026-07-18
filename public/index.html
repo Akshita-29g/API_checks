@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A romantic interactive experience — unfold the story, one page at a time.">
+  <meta name="theme-color" content="#1a0e2e">
+  <title> API Check</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/cat.css">
+  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="/css/library.css">
+  <link rel="stylesheet" href="/css/statistics.css">
+  <link rel="stylesheet" href="/css/faq.css">
+  <link rel="stylesheet" href="/css/playlist.css">
+  <link rel="stylesheet" href="/css/contact.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- NAVBAR                                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light and dark theme">
+    <span class="theme-icon">🌙</span>
+  </button>
+    <div class="nav-hamburger" id="nav-hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul class="nav-links" id="nav-links">
+      <li class="nav-item active" data-page="home">
+        <span class="nav-link">Home</span>
+      </li>
+      <li class="nav-item" data-page="library">
+        <span class="nav-link">Library</span>
+      </li>
+      <li class="nav-item" data-page="statistics">
+        <span class="nav-link">Statistics</span>
+      </li>
+      <li class="nav-item" data-page="faq">
+        <span class="nav-link">FAQ</span>
+      </li>
+      <li class="nav-item" data-page="playlist">
+        <span class="nav-link">Playlist</span>
+      </li>
+      <li class="nav-item" data-page="contact">
+        <span class="nav-link">Contact</span>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PAGE: HOME                                  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="page-section active" id="page-home">
+    <div class="bottle-scene">
+      <!-- Glowing particles -->
+      <div class="particles-container" id="particles-container"></div>
+
+      <!-- Floating bottle -->
+      <div class="bottle-wrapper" id="bottle-wrapper">
+        <div class="bottle" id="bottle">
+          <div class="bottle-cork"></div>
+          <div class="bottle-neck"></div>
+          <div class="bottle-body">
+            <div class="bottle-scroll"></div>
+          </div>
+        </div>
+        <span class="bottle-hint">tap to open</span>
+      </div>
+
+      <!-- Letter (hidden initially) -->
+      <div class="letter-container" id="letter-container">
+        <div class="letter glass-card" id="letter">
+          <h1 class="letter-greeting">Hi</h1>
+          <p class="letter-quote" id="letter-quote">"Loading..."</p>
+          <span class="letter-arrow">→</span>
+          <button class="btn btn-primary" id="btn-home-continue">Continue</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PAGE: LIBRARY                               -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="page-section" id="page-library">
+    <div class="library-content">
+      <p class="library-prompt" id="library-prompt">Click anywhere</p>
+      <div class="library-grid" id="library-grid">
+        <!-- 6 image cards injected by JS -->
+      </div>
+       <div class="library-particles-container" id="library-particles-container"></div>                                         
+      <div class="library-continue" id="library-continue">
+        <button class="btn btn-primary" id="btn-library-continue">Continue</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PAGE: STATISTICS                            -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="page-section" id="page-statistics">
+    <div class="statistics-content">
+      <div class="section-heading">
+        <h2>Statistics</h2>
+      </div>
+      <div class="charts-grid" id="charts-grid">
+        <div class="chart-card">
+          <h3>Longitudinal Study of us- Months by Month</h3>
+          <div class="chart-wrapper">
+            <canvas id="chart-bar"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>Regression Analysis-It just keeps growing</h3>
+          <div class="chart-wrapper">
+            <canvas id="chart-line"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <h3>"Anatomy of us"</h3>
+          <div class="chart-wrapper">
+            <canvas id="chart-pie"></canvas>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary mt-xl" id="btn-stats-continue">Continue</button>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PAGE: FAQ                                   -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="page-section" id="page-faq">
+    <div class="faq-content">
+      <!-- Intro Card -->
+      <div class="faq-intro-card glass-card" id="faq-intro">
+        <div class="faq-intro-placeholder" id="faq-intro-image">💑</div>
+        <p>"Before moving forward you have to answer some questions."</p>
+        <button class="btn btn-primary" id="btn-faq-start">Continue</button>
+      </div>
+
+      <!-- Question Card (hidden initially) -->
+      <div class="faq-question-card glass-card" id="faq-question-card">
+        <div class="faq-progress" id="faq-progress"></div>
+        <p class="question-number" id="question-number">Question 1 of 5</p>
+        <h3 class="question-text" id="question-text"></h3>
+
+        <!-- Text input (Q1-Q4) -->
+        <div class="faq-input-group" id="faq-text-input">
+          <input type="text" class="input-field" id="faq-answer-input" placeholder="Type your answer..." autocomplete="off">
+          <button class="btn btn-primary" id="btn-faq-submit">Submit</button>
+        </div>
+
+        <!-- Yes/No buttons (Q5) -->
+        <div class="yesno-container" id="faq-yesno" style="display:none;">
+          <button class="btn btn-yes" id="btn-yes">Yes</button>
+          <button class="btn btn-no" id="btn-no">No</button>
+        </div>
+
+        <p class="faq-feedback" id="faq-feedback"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PAGE: PLAYLIST                              -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="page-section" id="page-playlist">
+    <div class="section-heading">
+      <h2>Our Playlist</h2>
+    </div>
+    <div class="playlist-content">
+      <div class="songs-container" id="songs-container">
+        <!-- Song cards injected by JS -->
+      </div>
+      <div class="disc-container">
+        <div class="vinyl-disc"></div>
+        <div class="disc-reflection"></div>
+      </div>
+    </div>
+    <div class="playlist-continue">
+      <button class="btn btn-primary mt-2xl" id="btn-playlist-continue">Continue</button>
+    </div>
+    <div class="spotify-player-bar" id="spotify-player-bar">
+  <button class="spotify-player-close" id="spotify-player-close" aria-label="Close player">&times;</button>
+ <div class="playlist-particles-container" id="playlist-particles-container"></div>
+   <div id="spotify-embed-container"></div>
+</div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PAGE: CONTACT                               -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="page-section" id="page-contact">
+    <div class="contact-content">
+      <div class="contact-card glass-card">
+        <h2>Did you like it?</h2>
+        <p class="contact-subtitle">Type your thoughts.</p>
+        <form class="contact-form" id="contact-form">
+          <textarea class="input-field" id="contact-message" placeholder="Write something beautiful..." maxlength="1000"></textarea>
+          <div class="char-counter" id="char-counter">0 / 1000</div>
+          <button type="submit" class="btn btn-primary" id="btn-contact-send">Send 💌</button>
+        </form>
+        <div class="contact-status" id="contact-status"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- ANIMATED CAT                                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="cat-container" id="cat-container" title="Pat me!">
+    <div class="cat" id="cat">
+      <div class="cat-head">
+        <div class="cat-ear left"></div>
+        <div class="cat-ear right"></div>
+        <div class="cat-eyes">
+          <div class="cat-eye"></div>
+          <div class="cat-eye"></div>
+        </div>
+        <div class="cat-nose"></div>
+        <div class="cat-mouth"></div>
+        <div class="cat-whiskers">
+          <div class="cat-whisker left-top"></div>
+          <div class="cat-whisker left-bottom"></div>
+          <div class="cat-whisker right-top"></div>
+          <div class="cat-whisker right-bottom"></div>
+        </div>
+      </div>
+      <div class="cat-body"></div>
+      <div class="cat-tail"></div>
+      <div class="cat-paws">
+        <div class="cat-paw"></div>
+        <div class="cat-paw"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SCRIPTS                                     -->
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <!-- Chart.js -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script> -->
+  <script src="/js/vendor/chart.min.js"></script>
+
+  <!-- App Modules -->
+  <script src="/js/utils/transitions.js"></script>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/cat.js"></script>
+  <script src="/js/pages/home.js"></script>
+  <script src="/js/pages/library.js"></script>
+  <script src="/js/pages/statistics.js"></script>
+  <script src="/js/pages/faq.js"></script>
+  <!-- Spotify Embed IFrame API -->
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+  <script src="/js/pages/playlist.js"></script>
+  <script src="/js/pages/contact.js"></script>
+  <script src="/js/theme.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

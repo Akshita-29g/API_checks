@@ -1,0 +1,488 @@
+/**
+ * playlist.css — Playlist Page Styles
+ * =====================================
+ * Song cards layout with spinning vinyl disc.
+ */
+
+/**
+ * playlist.css — Playlist Page Styles
+ * =====================================
+ * Song cards layout with spinning vinyl disc.
+ */
+
+.playlist-content {
+  width: 100%;
+  max-width: 1300px; /* Expanded to give both components breathing room */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center; /* Aligns content toward the left */
+  /* position: relative; */
+  min-height: 80vh; /* Gives the layout a solid bounding box */
+}
+
+/* ─── Song Cards Container ───────────────────── */
+.songs-container {
+  flex: 0 0 45%; /* Limits card list width to exactly 45% of the space */
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Tighter gap so all 4 fit without pushing off screen */
+  z-index: 2; /* Ensures cards stack above any overflowing background elements */
+  gap: var(--space-md);
+  /* Scrollable Settings */
+  max-height: 460px;           /* Adjust this percentage to control how tall the scroll area is */
+  overflow-y: auto;           /* Enables vertical scrolling when items exceed max-height */
+  padding-right: 12px;        /* Prevents the scrollbar from overlapping the card hover effects */
+  
+  /* Smooth scrolling feel on mobile/trackpads */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ─── Song Card ──────────────────────────────── */
+.song-card {
+  display: block;
+  padding: var(--space-md) var(--space-xl); /* Reduced vertical padding significantly to prevent cutting off */
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-smooth);
+  text-decoration: none;
+  position: relative;
+  overflow: auto;
+}
+
+.song-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+}
+
+.song-card:hover {
+  transform: translateX(6px); /* subtle right-ward slide on hover instead of lifting up */
+  box-shadow: var(--shadow-glow);
+  border-color: rgba(255, 107, 157, 0.3);
+  background: var(--color-bg-glass-hover);
+}
+
+/* Spotify icon indicator */
+.song-card::after {
+  content: '♫';
+  position: absolute;
+  top: 50%;
+  right: var(--space-lg);
+  transform: translateY(-50%);
+  font-size: var(--font-size-lg);
+  color: var(--color-primary);
+  opacity: 0;
+  transition: all var(--duration-base) var(--ease-smooth);
+}
+
+.song-card:hover::after {
+  opacity: 1;
+  right: var(--space-xl);
+}
+
+.song-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-base); /* Slightly reduced to keep card height compact */
+  color: var(--color-text-heading);
+  margin-bottom: 8px; /* Tighter spacing */
+  font-weight: 600;
+}
+
+.song-artist {
+  font-size: var(--font-size-xs); /* Shifted to clean metadata scale */
+  color: var(--color-primary-soft);
+  margin-bottom: 6px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.song-lyric {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-style: italic;
+  line-height: 1.4;
+  padding-right: var(--space-2xl);
+}
+
+/* ─── Vinyl Disc ─────────────────────────────── */
+.disc-container {
+  position: absolute; /* Taken out of flex flow to replicate reference layout exactly */
+  right: -180px; /* Pushes the right side of the vinyl clean off-screen */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 550px; /* Drastically increased size to achieve the oversized premium look */
+  height: 550px;
+  pointer-events: none; /* Keeps it purely aesthetic so it doesn't block layout actions */
+  z-index: 1;
+}
+
+.vinyl-disc {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-round);
+  background: radial-gradient(
+    circle,
+    #1a1a2e 18%,
+    transparent 18.5%,
+    transparent 19%,
+    #2a2a3e 19%,
+    #2a2a3e 30%,
+    #222233 30.5%,
+    #222233 32%,
+    #2a2a3e 32%,
+    #2a2a3e 44%,
+    #222233 44.5%,
+    #222233 46%,
+    #2a2a3e 46%,
+    #2a2a3e 58%,
+    #222233 58.5%,
+    #222233 60%,
+    #2a2a3e 60%,
+    #2a2a3e 72%,
+    #222233 72.5%,
+    #222233 74%,
+    #2a2a3e 74%,
+    #2a2a3e 86%,
+    #222233 86.5%,
+    #222233 88%,
+    #1a1a2e 88%
+  );
+  box-shadow:
+    0 0 0 5px rgba(255, 255, 255, 0.05),
+    0 0 50px rgba(0, 0, 0, 0.6),
+    inset 0 0 80px rgba(0, 0, 0, 0.4);
+  animation: discSpin 12s linear infinite; /* Slowed down rotation slightly for premium feel */
+  position: relative;
+}
+
+/* Center label */
+.vinyl-disc::before {
+  content: '♥';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px; /* Scaled up center piece relative to the massive vinyl frame */
+  height: 90px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-rose));
+  border-radius: var(--radius-round);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: white;
+  box-shadow: 0 0 25px rgba(255, 107, 157, 0.4);
+}
+
+/* Center hole */
+.vinyl-disc::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background: var(--color-bg-deep);
+  border-radius: var(--radius-round);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Light reflection */
+.disc-reflection {
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  width: 30%;
+  height: 30%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+@keyframes discSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ─── Continue button area ───────────────────── */
+.playlist-continue {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Matches aligned left-hand container */
+  margin-top: var(--space-xl);
+}
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 992px) {
+  .playlist-content {
+    flex-direction: column-reverse;
+    justify-content: center;
+    gap: var(--space-2xl);
+    min-height: auto;
+  }
+
+  .disc-container {
+    /* position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 320px;
+    height: 320px;
+    margin: 0 auto; */
+    position: absolute;
+    right: -220px;   /* pushed further right so more of it clips off-screen */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 900px;    /* slightly larger for a more dramatic peek, like Image 1 */
+    height: 900px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .songs-container {
+    flex: 1;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+/* ─── Spotify Player Bar ──────────────────────── */
+.spotify-player-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-modal);
+  background: rgba(13, 10, 26, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
+  padding: var(--space-md) var(--space-xl);
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform var(--duration-base) var(--ease-smooth),
+              opacity var(--duration-base) var(--ease-smooth);
+  pointer-events: none;
+}
+
+.spotify-player-bar.active {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.spotify-player-close {
+  position: absolute;
+  top: -14px;
+  right: var(--space-xl);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gradient-primary);
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-glow);
+}
+
+#spotify-embed-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#spotify-embed-container iframe {
+  border-radius: var(--radius-md);
+}
+
+@media (max-width: 768px) {
+  .spotify-player-bar {
+    padding: var(--space-sm) var(--space-md);
+  }
+}
+/* ─── Playlist Sparkle Particles ────────────────
+.playlist-particles-container {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.playlist-particles-container .particle {
+  position: absolute;
+  bottom: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--color-primary) 60%, transparent 100%);
+  box-shadow: 0 0 8px rgba(255, 107, 157, 0.8);
+  opacity: 0;
+  animation: sparkleRise 6s ease-out forwards;
+} */
+
+
+/* ─── Playlist Sparkle Particles ──────────────── */
+/* .playlist-particles-container {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+ 
+/* Round sparkle dots — size now set inline per-particle in JS */
+ /* .playlist-particles-container .particle {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--color-primary) 60%, transparent 100%);
+  box-shadow: 0 0 8px rgba(255, 107, 157, 0.8);
+  opacity: 0;
+  animation: sparkleRise 6s ease-out forwards;
+}
+ 
+/* Heart-shaped sparkles */
+/* .playlist-particles-container .particle-heart {
+  position: absolute;
+  bottom: 0;
+  color: var(--color-primary);
+  text-shadow: 0 0 10px rgba(255, 107, 157, 0.9);
+  opacity: 0;
+  line-height: 1;
+  animation: sparkleRiseHeart 6s ease-out forwards;
+ }
+  */
+/* @keyframes sparkleRise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.4);
+  }
+  10% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-220px) scale(1);
+  }
+} */
+  
+/* Hearts drift slightly sideways and rotate a touch as they rise,
+   for a more organic float than the plain dots */
+ /* @keyframes sparkleRiseHeart {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.5) rotate(-8deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(10px, -110px) scale(1) rotate(6deg);
+  }
+  70% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-6px, -230px) scale(1.1) rotate(-4deg);
+  }
+} */
+
+/* ─── Playlist Sparkle Particles ──────────────── */
+.playlist-particles-container {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Round sparkle dots — size set inline per-particle in JS,
+   glow strengthened so even the smallest ones read clearly */
+.playlist-particles-container .particle {
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--color-primary) 55%, transparent 100%);
+  box-shadow: 0 0 10px rgba(255, 107, 157, 0.95), 0 0 4px rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  animation: sparkleRise 6s ease-out forwards;
+}
+
+/* Heart-shaped sparkles */
+.playlist-particles-container .particle-heart {
+  position: absolute;
+  bottom: 0;
+  color: var(--color-primary);
+  text-shadow: 0 0 10px rgba(255, 107, 157, 0.9);
+  opacity: 0;
+  line-height: 1;
+  animation: sparkleRiseHeart 6s ease-out forwards;
+}
+
+@keyframes sparkleRise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.4);
+  }
+  10% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-220px) scale(1);
+  }
+}
+
+/* Hearts drift slightly sideways and rotate a touch as they rise,
+   for a more organic float than the plain dots */
+@keyframes sparkleRiseHeart {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.5) rotate(-8deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(10px, -110px) scale(1) rotate(6deg);
+  }
+  70% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-6px, -230px) scale(1.1) rotate(-4deg);
+  }
+}
+/* Playlist content is shorter than other pages, so let this
+   section size to its content instead of forcing full-viewport
+   height like the rest of the site. */
+#page-playlist.page-section {
+  min-height: auto !important;
+  padding-top: calc(70px + var(--space-2xl));
+  padding-bottom: var(--space-2xl);
+}

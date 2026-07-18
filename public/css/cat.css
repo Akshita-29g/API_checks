@@ -1,0 +1,310 @@
+/**
+ * cat.css — Animated Cat Character
+ * ==================================
+ * Pure CSS cat with idle breathing, blinking,
+ * tail sway, and click interaction hearts.
+ * Redesigned: soft white/cream fur with gentle
+ * shading for a cuter, more dimensional look.
+ */
+
+.cat-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: var(--z-cat);
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  transition: transform var(--duration-base) var(--ease-smooth);
+}
+
+.cat-container:hover {
+  transform: scale(1.05);
+}
+
+/* ─── Cat Body ───────────────────────────────── */
+.cat {
+  position: relative;
+  width: 50px;
+  height: 40px;
+  margin: 25px auto 0;
+  animation: catBreathe 3s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes catBreathe {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(1.03); }
+}
+
+/* Body — soft white with a subtle warm gradient for volume */
+.cat-body {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 28px;
+  background: linear-gradient(180deg, #ffffff 0%, #f3eef7 60%, #e8dff2 100%);
+  border-radius: 50% 50% 45% 45%;
+  box-shadow: inset 0 -4px 6px rgba(196, 167, 231, 0.25);
+}
+
+/* Head */
+.cat-head {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 26px;
+  background: linear-gradient(180deg, #ffffff 0%, #f5f0f9 70%, #ece3f5 100%);
+  border-radius: 50% 50% 40% 40%;
+  box-shadow: inset 0 -3px 5px rgba(196, 167, 231, 0.2);
+  z-index: 2;
+}
+
+/* Ears */
+.cat-ear {
+  position: absolute;
+  top: -8px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 10px solid #f5f0f9;
+  filter: drop-shadow(0 -1px 1px rgba(196, 167, 231, 0.2));
+}
+
+.cat-ear.left {
+  left: 2px;
+  transform: rotate(-10deg);
+}
+
+.cat-ear.right {
+  right: 2px;
+  transform: rotate(10deg);
+}
+
+/* Inner ear — soft pink for a cuter look */
+.cat-ear::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: -3px;
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-bottom: 6px solid #ffc2d1;
+}
+
+/* Eyes */
+.cat-eyes {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.cat-eye {
+  width: 5px;
+  height: 6px;
+  background: #3d3450;
+  border-radius: 50%;
+  position: relative;
+  animation: catBlink 4s ease-in-out infinite;
+}
+
+.cat-eye::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+}
+
+@keyframes catBlink {
+  0%, 45%, 55%, 100% { transform: scaleY(1); }
+  50%                { transform: scaleY(0.1); }
+}
+
+/* Blush — a small cute detail under each eye */
+.cat-head::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 2px;
+  width: 6px;
+  height: 3px;
+  background: rgba(255, 179, 198, 0.55);
+  border-radius: 50%;
+  filter: blur(0.5px);
+  box-shadow: 20px 0 0 rgba(255, 179, 198, 0.55);
+}
+
+/* Nose */
+.cat-nose {
+  position: absolute;
+  bottom: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 3px;
+  background: #ffaec2;
+  border-radius: 50% 50% 40% 40%;
+}
+
+/* Mouth */
+.cat-mouth {
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 4px;
+  border-bottom: 1.5px solid rgba(80, 65, 100, 0.35);
+  border-radius: 0 0 50% 50%;
+}
+
+/* Whiskers */
+.cat-whiskers {
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+}
+
+.cat-whisker {
+  position: absolute;
+  width: 14px;
+  height: 1px;
+  background: rgba(120, 100, 140, 0.35);
+}
+
+.cat-whisker.left-top    { left: -8px; top: -2px; transform: rotate(-10deg); }
+.cat-whisker.left-bottom { left: -8px; top: 2px;  transform: rotate(10deg); }
+.cat-whisker.right-top   { right: -8px; top: -2px; transform: rotate(10deg); }
+.cat-whisker.right-bottom{ right: -8px; top: 2px;  transform: rotate(-10deg); }
+
+/* Tail */
+.cat-tail {
+  position: absolute;
+  bottom: 2px;
+  right: -8px;
+  width: 20px;
+  height: 3px;
+  background: linear-gradient(90deg, #f3eef7, #e8dff2);
+  border-radius: 0 10px 10px 0;
+  transform-origin: left center;
+  animation: tailSway 2s ease-in-out infinite;
+}
+
+.cat-tail::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  border: 3px solid #e8dff2;
+  border-color: #e8dff2 #e8dff2 transparent transparent;
+  border-radius: 0 50% 0 0;
+}
+
+@keyframes tailSway {
+  0%, 100% { transform: rotate(-10deg); }
+  50%      { transform: rotate(15deg); }
+}
+
+/* ─── Happy Tail Wag (on click) ──────────────── */
+.cat.happy .cat-tail {
+  animation: tailWag 0.3s ease-in-out infinite;
+}
+
+@keyframes tailWag {
+  0%, 100% { transform: rotate(-20deg); }
+  50%      { transform: rotate(25deg); }
+}
+
+.cat.happy .cat-eye {
+  transform: scaleY(0.5) scaleX(1.2);
+  border-radius: 50% 50% 0 0;
+}
+
+/* ─── Floating Hearts ────────────────────────── */
+.cat-heart {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 10;
+  color: var(--color-primary);
+  text-shadow: 0 0 14px rgba(255, 107, 157, 0.95), 0 0 6px rgba(255, 255, 255, 0.7);
+  line-height: 1;
+}
+
+@keyframes heartFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.4) rotate(0deg);
+  }
+  25% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-65px) scale(1.1) rotate(12deg);
+  }
+}
+
+/* ─── Paw prints (cute detail) ───────────────── */
+.cat-paws {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+}
+
+.cat-paw {
+  width: 8px;
+  height: 6px;
+  background: linear-gradient(180deg, #ffffff, #f0e9f7);
+  border-radius: 50% 50% 40% 40%;
+  box-shadow: inset 0 -1px 2px rgba(196, 167, 231, 0.25);
+}
+
+/* ─── Responsive ─────────────────────────────── */
+@media (max-width: 768px) {
+  .cat-container {
+    width: 65px;
+    height: 65px;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .cat {
+    width: 42px;
+    height: 34px;
+    margin-top: 18px;
+  }
+
+  .cat-body {
+    width: 30px;
+    height: 24px;
+  }
+
+  .cat-head {
+    width: 26px;
+    height: 22px;
+    top: -6px;
+  }
+}

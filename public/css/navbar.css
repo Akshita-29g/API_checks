@@ -1,0 +1,215 @@
+/**
+ * navbar.css — Persistent Navigation Bar
+ * ========================================
+ * Fixed glassmorphism navbar with glow indicators
+ * for active and completed pages.
+ */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md) var(--space-xl);
+  background: var(--navbar-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all var(--duration-base) var(--ease-smooth);
+}
+
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 157, 0.2), transparent);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  list-style: none;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  display: block;
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-smooth);
+  position: relative;
+  user-select: none;
+}
+
+/* Underline indicator */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-pill);
+  transition: width var(--duration-base) var(--ease-smooth);
+}
+
+.nav-link:hover {
+  color: var(--color-text-secondary);
+}
+
+/* Active page: glowing indicator */
+.nav-item.active .nav-link {
+  color: var(--color-primary);
+  text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+}
+
+.nav-item.active .nav-link::after {
+  width: 70%;
+}
+
+/* Completed page: subtle highlight */
+.nav-item.completed .nav-link {
+  color: var(--color-text-secondary);
+}
+
+.nav-item.completed .nav-link::after {
+  width: 30%;
+  opacity: 0.4;
+}
+
+/* Active page glow pulse */
+.nav-item.active .nav-link::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: radial-gradient(circle, rgba(255, 107, 157, 0.1) 0%, transparent 70%);
+  border-radius: var(--radius-md);
+  animation: navGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes navGlow {
+  0%   { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* ─── Mobile Hamburger ───────────────────────── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: var(--space-sm);
+  z-index: 110;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text-primary);
+  border-radius: 2px;
+  transition: all var(--duration-base) var(--ease-smooth);
+}
+
+.nav-hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.nav-hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.nav-hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ─── Mobile Responsive ──────────────────────── */
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: flex-end;
+    padding: var(--space-md);
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 260px;
+    height: 100vh;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: calc(60px + var(--space-xl)) var(--space-xl);
+    background: var(--navbar-bg);
+    backdrop-filter: blur(30px);
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    transition: right var(--duration-slow) var(--ease-smooth);
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  .nav-link {
+    padding: var(--space-md) 0;
+    font-size: var(--font-size-base);
+    width: 100%;
+  }
+}
+/* ─── Theme Toggle Button ─────────────────────── */
+.theme-toggle {
+  position: absolute;
+  left: var(--space-xl);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--color-bg-glass);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all var(--duration-base) var(--ease-smooth);
+  z-index: var(--z-nav);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-50%) scale(1.08);
+  border-color: rgba(255, 107, 157, 0.4);
+  box-shadow: var(--shadow-glow);
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    left: var(--space-md);
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,153 @@
+/**
+ * variables.css — Design Tokens
+ * ==============================
+ * Central source of truth for all design values.
+ * Romantic theme: deep darks, soft pinks, warm golds, lavender accents.
+ */
+
+:root {
+  /* ─── Color Palette ──────────────────────────── */
+  --navbar-bg: rgba(13, 10, 26, 0.8);
+  --color-bg-deep:        #0d0a1a;
+  --color-bg-dark:        #1a0e2e;
+  --color-bg-card:        rgba(255, 255, 255, 0.06);
+  --color-bg-glass:       rgba(255, 255, 255, 0.08);
+  --color-bg-glass-hover: rgba(255, 255, 255, 0.12);
+
+  --color-primary:        #ff6b9d;
+  --color-primary-soft:   #ff8fab;
+  --color-primary-glow:   rgba(255, 107, 157, 0.4);
+  --color-secondary:      #c4a7e7;
+  --color-secondary-soft: #d4bff0;
+  --color-accent-gold:    #ffd700;
+  --color-accent-warm:    #ffb347;
+  --color-rose:           #e84393;
+  --color-lavender:       #a29bfe;
+
+  --color-text-primary:   #f5f0ff;
+  --color-text-secondary: rgba(245, 240, 255, 0.7);
+  --color-text-muted:     rgba(245, 240, 255, 0.45);
+  --color-text-heading:   #fff0f5;
+
+  --color-success:        #55efc4;
+  --color-error:          #ff7675;
+  --color-error-soft:     rgba(255, 118, 117, 0.15);
+
+  /* ─── Gradients ──────────────────────────────── */
+  --gradient-bg:          linear-gradient(135deg, #0d0a1a 0%, #1a0e2e 40%, #2d1b4e 100%);
+  --gradient-primary:     linear-gradient(135deg, #ff6b9d, #c4a7e7);
+  --gradient-warm:        linear-gradient(135deg, #ff6b9d, #ffb347);
+  --gradient-glass:       linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+  --gradient-card:        linear-gradient(145deg, rgba(255,107,157,0.08), rgba(196,167,231,0.05));
+  --gradient-glow:        radial-gradient(circle, rgba(255,107,157,0.2) 0%, transparent 70%);
+
+  /* ─── Glassmorphism ──────────────────────────── */
+  --glass-blur:           20px;
+  --glass-bg:             rgba(255, 255, 255, 0.06);
+  --glass-border:         1px solid rgba(255, 255, 255, 0.1);
+  --glass-shadow:         0 8px 32px rgba(0, 0, 0, 0.3);
+
+  /* ─── Typography ─────────────────────────────── */
+  --font-heading:         'Playfair Display', Georgia, serif;
+  --font-body:            'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-size-xs:         0.75rem;
+  --font-size-sm:         0.875rem;
+  --font-size-base:       1rem;
+  --font-size-md:         1.125rem;
+  --font-size-lg:         1.5rem;
+  --font-size-xl:         2rem;
+  --font-size-2xl:        2.5rem;
+  --font-size-3xl:        3.5rem;
+  --font-size-hero:       4.5rem;
+  --line-height-tight:    1.2;
+  --line-height-base:     1.6;
+  --letter-spacing-wide:  0.05em;
+  --letter-spacing-wider: 0.1em;
+
+  /* ─── Spacing ────────────────────────────────── */
+  --space-xs:   0.25rem;
+  --space-sm:   0.5rem;
+  --space-md:   1rem;
+  --space-lg:   1.5rem;
+  --space-xl:   2rem;
+  --space-2xl:  3rem;
+  --space-3xl:  4rem;
+  --space-4xl:  6rem;
+
+  /* ─── Border Radius ──────────────────────────── */
+  --radius-sm:    8px;
+  --radius-md:    12px;
+  --radius-lg:    16px;
+  --radius-xl:    24px;
+  --radius-pill:  50px;
+  --radius-round: 50%;
+
+  /* ─── Shadows ────────────────────────────────── */
+  --shadow-sm:    0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md:    0 4px 16px rgba(0, 0, 0, 0.25);
+  --shadow-lg:    0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-xl:    0 16px 48px rgba(0, 0, 0, 0.4);
+  --shadow-glow:  0 0 20px rgba(255, 107, 157, 0.3);
+  --shadow-glow-strong: 0 0 40px rgba(255, 107, 157, 0.5);
+
+  /* ─── Transitions ────────────────────────────── */
+  --ease-smooth:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce:   cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-soft:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --duration-fast:   200ms;
+  --duration-base:   350ms;
+  --duration-slow:   600ms;
+  --duration-slower: 1000ms;
+
+  /* ─── Z-Index Scale ──────────────────────────── */
+  --z-base:      1;
+  --z-content:   10;
+  --z-nav:       100;
+  --z-cat:       90;
+  --z-overlay:   200;
+  --z-modal:     300;
+}
+
+
+/* ─── Ambient Glow (used by body::before, overridden by time-of-day JS) ── */
+:root {
+  --btn-secondary-bg: rgba(255, 255, 255, 0.06);
+  --btn-secondary-border: rgba(255, 255, 255, 0.1);
+  --dot-inactive-bg: rgba(255, 255, 255, 0.15);
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --input-border: rgba(255, 255, 255, 0.1);
+  --ambient-glow-1: rgba(255, 107, 157, 0.04);
+  --ambient-glow-2: rgba(196, 167, 231, 0.04);
+  --ambient-glow-3: rgba(255, 215, 0, 0.02);
+  --particle-tint:  var(--color-primary);
+}
+
+/* ─── Light Theme Override ────────────────────── */
+[data-theme="light"] {
+  --gradient-bg: linear-gradient(135deg, #fdeef4 0%, #ffd6e8 20%, #ffc2e0 40%, #e8bff5 60%, #cdb8f0 80%, #b8c9f0 100%);
+  --btn-secondary-border: rgba(61, 43, 78, 0.15);
+  --dot-inactive-bg: rgba(61, 43, 78, 0.18);
+  --navbar-bg: rgba(255, 255, 255, 0.65);
+  --input-bg: rgba(61, 43, 78, 0.05);
+  --input-border: rgba(61, 43, 78, 0.15);
+  --color-bg-deep:        #fdf6f9;
+  --color-bg-dark:        #fff0f5;
+  --color-bg-card:        rgba(61, 43, 78, 0.04);
+  --color-bg-glass:       rgba(255, 255, 255, 0.55);
+  --color-bg-glass-hover: rgba(255, 255, 255, 0.75);
+
+  --gradient-bg: linear-gradient(135deg, #fdf6f9 0%, #ffe9f1 25%, #fbe4f5 50%, #eee0fa 75%, #e6e0fb 100%);
+
+  --color-text-primary:   #3d2b4e;
+  --color-text-secondary: rgba(61, 43, 78, 0.72);
+  --color-text-muted:     rgba(61, 43, 78, 0.48);
+  --color-text-heading:   #3d2b4e;
+
+  --glass-bg:     rgba(255, 255, 255, 0.55);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.7);
+  --glass-shadow: 0 8px 32px rgba(196, 167, 231, 0.18);
+
+  --ambient-glow-1: rgba(255, 107, 157, 0.10);
+  --ambient-glow-2: rgba(196, 167, 231, 0.10);
+  --ambient-glow-3: rgba(255, 200, 80, 0.06);
+}
