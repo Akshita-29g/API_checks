@@ -513,11 +513,11 @@ function spawnParticle() {
       `;
 
       if (trackId) {
-        card.addEventListener("click", () => openAtTimestamp(trackId, timestamp));
+        card.addEventListener("click", () => openAtTimestamp(trackId));
         card.addEventListener("keydown", (e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
-            openAtTimestamp(trackId, timestamp);
+            openAtTimestamp(trackId);
           }
         });
       } else {
@@ -579,30 +579,52 @@ function spawnParticle() {
   //     spotifyController.resume();
   //   }
   // }
-function openAtTimestamp(trackId, seconds) {
-  pendingSeekSeconds = seconds;
-  hasSeekedForCurrentLoad = false;
+// function openAtTimestamp(trackId, seconds) {
+//   pendingSeekSeconds = seconds;
+//   hasSeekedForCurrentLoad = false;
+//   const uri = `spotify:track:${trackId}`;
+
+//   playerBar.classList.add("active");
+//   startParticles(); // ← sparkles begin when a song opens
+
+//   if (!spotifyApi) {
+//     setTimeout(() => openAtTimestamp(trackId, seconds), 300);
+//     return;
+//   }
+
+//   if (!spotifyController) {
+//     // First time opening the player: create the controller once,
+//     // attach the listener once, and kick off playback right away.
+//     const options = { uri };
+//     spotifyApi.createController(embedContainer, options, (controller) => {
+//       spotifyController = controller;
+//       spotifyController.addListener("playback_update", handlePlaybackUpdate);
+//       spotifyController.play();
+//     });
+//   } else {
+//     // Reuse the existing player — load the new track and play it.
+//     spotifyController.loadUri(uri);
+//     spotifyController.play();
+//   }
+// }
+function openAtTimestamp(trackId) {
   const uri = `spotify:track:${trackId}`;
 
   playerBar.classList.add("active");
-  startParticles(); // ← sparkles begin when a song opens
+  startParticles();
 
   if (!spotifyApi) {
-    setTimeout(() => openAtTimestamp(trackId, seconds), 300);
+    setTimeout(() => openAtTimestamp(trackId), 300);
     return;
   }
 
   if (!spotifyController) {
-    // First time opening the player: create the controller once,
-    // attach the listener once, and kick off playback right away.
     const options = { uri };
     spotifyApi.createController(embedContainer, options, (controller) => {
       spotifyController = controller;
-      spotifyController.addListener("playback_update", handlePlaybackUpdate);
       spotifyController.play();
     });
   } else {
-    // Reuse the existing player — load the new track and play it.
     spotifyController.loadUri(uri);
     spotifyController.play();
   }
@@ -613,15 +635,15 @@ function openAtTimestamp(trackId, seconds) {
  * playback has genuinely started (not paused, real duration
  * known) before seeking — seeking too early gets ignored.
  */
-function handlePlaybackUpdate(e) {
-  if (hasSeekedForCurrentLoad) return;
+// function handlePlaybackUpdate(e) {
+//   if (hasSeekedForCurrentLoad) return;
 
-  const data = e && e.data;
-  if (data && !data.isPaused && typeof data.duration === "number" && data.duration > 0) {
-    hasSeekedForCurrentLoad = true;
-    spotifyController.seek(pendingSeekSeconds);
-  }
-}
+//   const data = e && e.data;
+//   if (data && !data.isPaused && typeof data.duration === "number" && data.duration > 0) {
+//     hasSeekedForCurrentLoad = true;
+//     spotifyController.seek(pendingSeekSeconds);
+//   }
+// }
   function closePlayer() {
     playerBar.classList.remove("active");
     stopParticles(); // ← sparkles stop when player closes

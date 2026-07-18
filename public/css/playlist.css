@@ -486,3 +486,30 @@
   padding-top: calc(70px + var(--space-2xl));
   padding-bottom: var(--space-2xl);
 }
+
+/* Continue button must always render above the vinyl disc,
+   regardless of any visual overlap between them */
+.playlist-continue {
+  position: relative;
+  z-index: 5;
+  margin-top: var(--space-2xl);
+}
+
+/* Keep the disc contained and non-overlapping on mobile/tablet */
+@media (max-width: 992px) {
+  .disc-container {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 260px !important;
+    height: 260px !important;
+    margin: 0 auto var(--space-xl) !important;
+    z-index: 1;
+  }
+
+  .songs-container {
+    position: relative;
+    z-index: 2;
+  }
+}
