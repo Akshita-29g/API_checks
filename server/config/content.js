@@ -7,16 +7,16 @@
 
 module.exports = {
   // ─── Home Page ────────────────────────────────────────
-  romanticQuote: "Here's Something for YOU",
+  romanticQuote: "Just got bored so here's something for you <3!",
 
   // ─── Library Page ─────────────────────────────────────
   // Replace these with actual image paths or URLs.
   // Images are served from /assets/ so use paths like "/assets/photo1.jpg"
   // or full URLs like "https://example.com/photo.jpg"
   libraryImages: [
-    "/assets/photo1.png",
+    "/assets/photo1.jpeg",
     "/assets/photo2.jpeg",
-    "/assets/photo3.png",
+    "/assets/photo3.jpeg",
     "/assets/photo4.jpeg",
     "/assets/photo5.jpeg",
     "/assets/photo6.png",
