@@ -1,3 +1,55 @@
+/* .heart-gesture-content {
+  max-width: 560px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.heart-gesture-sub {
+  color: var(--color-text-secondary);
+}
+
+.heart-gesture-hidden-message {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  color: var(--color-primary-soft);
+  font-family: var(--font-heading);
+  font-style: italic;
+  transition: opacity 0.8s ease, height 0.8s ease;
+}
+
+.heart-gesture-hidden-message.revealed {
+  opacity: 1;
+  height: auto;
+  margin-top: var(--space-sm);
+}
+
+#page-heart-gesture {
+  background:
+    radial-gradient(
+      circle at 50% 65%,
+      color-mix(in srgb, var(--eye-tint, var(--color-primary)) 18%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(
+      circle at 50% 20%,
+      color-mix(in srgb, var(--outfit-color-1, var(--color-secondary)) 12%, transparent),
+      transparent 55%
+    );
+  transition: background 1.2s ease;
+}
+
+.heart-burst-zone {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+} */
+
 .heart-gesture-content {
   max-width: 560px;
   text-align: center;
@@ -48,4 +100,36 @@
   pointer-events: none;
   z-index: 9999;
   overflow: hidden;
+}
+
+/* ─── Mobile responsiveness ───────────────────────────
+   The card and idle/revealed image wrapper were sized for
+   desktop (image wrapper max-width: 320px is injected by
+   heartGestureStage.js). On small screens that ate up most
+   of the viewport, so we scale everything down here.
+   !important is required on the image wrapper override
+   because the JS-injected <style> tag loads after this
+   stylesheet and would otherwise win on equal specificity. */
+@media (max-width: 480px) {
+  .heart-gesture-content {
+    max-width: 90vw;
+    gap: var(--space-md);
+  }
+
+  .heart-gesture-image-wrapper {
+    max-width: 200px !important;
+    margin-bottom: 16px !important;
+  }
+
+  #page-heart-gesture-card {
+    padding: var(--space-md) !important;
+  }
+
+  #page-heart-gesture-card h2 {
+    font-size: var(--font-size-lg, 1.1rem);
+  }
+
+  .heart-gesture-sub {
+    font-size: var(--font-size-sm, 0.85rem);
+  }
 }

@@ -278,6 +278,9 @@ export function initHeartbeatMonitor({
     if (expanded) collapse();
     else expand();
   });
+  panel.addEventListener("click", () => {
+  if (expanded) collapse();
+});
 
   new ResizeObserver(() => {
     if (expanded) resizeCanvas();
