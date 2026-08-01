@@ -468,7 +468,7 @@ const PlaylistPage = (() => {
     buildSongCards(songs);
 
     document.getElementById("btn-playlist-continue").addEventListener("click", () => {
-      App.navigateTo("contact");
+      App.navigateTo("heart-gesture");
     });
 
     const closeBtn = document.getElementById("spotify-player-close");

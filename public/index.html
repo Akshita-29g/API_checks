@@ -19,6 +19,7 @@
 <link rel="manifest" href="/site.webmanifest">
 
   <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/heart-gesture.css">
   <link rel="stylesheet" href="/css/variables.css">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/navbar.css">
@@ -31,6 +32,8 @@
   <link rel="stylesheet" href="/css/contact.css">
 </head>
 <body>
+
+     <div class="proximity-glow"></div>
 
   <!-- ═══════════════════════════════════════════ -->
   <!-- NAVBAR                                      -->
@@ -73,6 +76,7 @@
     <div class="bottle-scene">
       <!-- Glowing particles -->
       <div class="particles-container" id="particles-container"></div>
+      <div id="heart-burst-origin"></div>
 
       <!-- Floating bottle -->
       <div class="bottle-wrapper" id="bottle-wrapper">
@@ -208,6 +212,29 @@
   </section>
 
   <!-- ═══════════════════════════════════════════ -->
+  <!-- PAGE: HEART GESTURE                         -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="page-section" id="page-heart-gesture">
+    <div class="heart-gesture-content">
+      <div id="air-writing-zone" style="position:absolute; inset:0; pointer-events:none; z-index:5;"></div>
+      <div class="faq-intro-card glass-card" id="page-heart-gesture-card">
+  <div class="heart-gesture-image-wrapper" id="heart-gesture-image-wrapper">
+    <img class="heart-gesture-image heart-gesture-image--idle" src="/assets/heart-idle.png" alt="" />
+    <img class="heart-gesture-image heart-gesture-image--revealed" src="/assets/heart-revealed.png" alt="" />
+  </div>
+      
+      <h2>Form a heart with your hands</h2>
+      <p class="heart-gesture-sub"> (OR lean in togehter and see the magic !)</p>
+      <p class="heart-gesture-hidden-message" id="heart-hidden-message">
+       Aww...I Love you too  💗
+      </p>
+      <button class="btn btn-primary" id="btn-heart-continue">Continue</button>
+    </div>
+    <div id="heartbeat-monitor-mount"></div>
+    <div class="heart-burst-zone" id="heart-burst-zone"></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
   <!-- PAGE: CONTACT                               -->
   <!-- ═══════════════════════════════════════════ -->
   <section class="page-section" id="page-contact">
@@ -278,5 +305,45 @@
   <script src="/js/pages/contact.js"></script>
   <script src="/js/theme.js"></script>
   <script src="/js/app.js"></script>
+  <script type="module" src="/js/vision/visionEngine.js"></script>
+  <script type="module">
+     import visionEngine from "/js/vision/visionEngine.js";
+
+  visionEngine.addEventListener("hand:point", (e) => console.log("👉 hand detected, pointing at", e.detail));
+  visionEngine.addEventListener("hand:wave", () => console.log("🌊 WAVE detected!"));
+  visionEngine.addEventListener("engine:error", (e) => console.log("❌ engine error:", e.detail.reason));
+  let debugFrame = 0;
+visionEngine.handLandmarker && setInterval(() => {}, 0); // no-op, just a reminder this exists
+window.__debugHands = true;
+
+  visionEngine.start();
+  import { initProximityGlow } from "/js/vision/proximityGlow.js";
+  import { initFaceHearts } from "/js/vision/faceHearts.js";
+  import { initBlinkToOpen } from "/js/vision/blinkToOpen.js";
+  import { initCatWavePat } from "/js/vision/catWavePat.js";
+  import { initWaveReveal } from "/js/vision/waveReveal.js";
+  import { initOutfitColorPalette } from "/js/vision/outfitColorPalette.js";
+  import { initHeartGestureStage } from "/js/vision/heartGestureStage.js";
+  import { initBlinkReveal } from "/js/vision/blinkReveal.js";
+  import { initLibraryCompletionSparkle } from "/js/vision/libraryCompletionSparkle.js";
+  import { initSmileIntro } from "/js/vision/smileIntro.js";
+  import { initHeartbeatMonitor } from "/js/vision/heartbeatMonitor.js";
+  import { initHeartGestureInstructions } from "/js/vision/heartGestureInstructions.js";
+  
+
+  initProximityGlow();
+  initFaceHearts();
+  initBlinkToOpen();
+  initCatWavePat();
+  initWaveReveal();
+  initOutfitColorPalette();
+  initHeartGestureStage();
+  initBlinkReveal();
+  initLibraryCompletionSparkle();
+  initSmileIntro();
+  initHeartbeatMonitor(); // defaults to floating widget on the heart-gesture page
+  initHeartGestureInstructions();
+
+</script>
 </body>
 </html>

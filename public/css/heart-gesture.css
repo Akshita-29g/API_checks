@@ -1,0 +1,51 @@
+.heart-gesture-content {
+  max-width: 560px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.heart-gesture-sub {
+  color: var(--color-text-secondary);
+}
+
+.heart-gesture-hidden-message {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  color: var(--color-primary-soft);
+  font-family: var(--font-heading);
+  font-style: italic;
+  transition: opacity 0.8s ease, height 0.8s ease;
+}
+
+.heart-gesture-hidden-message.revealed {
+  opacity: 1;
+  height: auto;
+  margin-top: var(--space-sm);
+}
+
+#page-heart-gesture {
+  background:
+    radial-gradient(
+      circle at 50% 65%,
+      color-mix(in srgb, var(--eye-tint, var(--color-primary)) 18%, transparent),
+      transparent 65%
+    ),
+    radial-gradient(
+      circle at 50% 20%,
+      color-mix(in srgb, var(--outfit-color-1, var(--color-secondary)) 12%, transparent),
+      transparent 55%
+    );
+  transition: background 1.2s ease;
+}
+
+.heart-burst-zone {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}

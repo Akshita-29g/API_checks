@@ -19,41 +19,77 @@ const PORT = process.env.PORT || 3000;
 // ─── Security Middleware ────────────────────────────────
 app.use(
   helmet({
+    // contentSecurityPolicy: {
+    //   directives: {
+    //     defaultSrc: ["'self'"],
+    //     scriptSrc: [
+    //       "'self'",
+    //       "'unsafe-inline'",
+    //        "'unsafe-eval'",  
+    //       "https://cdn.jsdelivr.net",
+    //       "https://cdnjs.cloudflare.com",
+    //       "https://open.spotify.com",       // ← add this
+    //       "https://*.spotifycdn.com",      // ← covers embed-cdn.spotifycdn.com and similar
+    //       "https://*.scdn.co",    
+    //     ],
+    //     frameSrc: [
+    //     "'self'",
+    //     "https://open.spotify.com",       // ← needed for the embedded iframe player itself
+    //     "https://embed.spotify.com",
+    //   ],
+    //   connectSrc: [
+    //     "'self'",
+    //     "https://open.spotify.com",       // ← needed if the player makes XHR/fetch calls
+    //     "https://api.spotify.com",
+    //     "https://*.spotifycdn.com",
+    //     "https://*.scdn.co",
+    //   ],
+    //     styleSrc: [
+    //       "'self'",
+    //       "'unsafe-inline'",
+    //       "https://fonts.googleapis.com",
+    //     ],
+    //     fontSrc: ["'self'", "https://fonts.gstatic.com"],
+    //     imgSrc: ["'self'", "data:", "https://*.scdn.co", "blob:", "https:"],
+    //     connectSrc: ["'self'"],
+    //   },
+    // },
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: [
-          "'self'",
-          "'unsafe-inline'",
-           "'unsafe-eval'",  
-          "https://cdn.jsdelivr.net",
-          "https://cdnjs.cloudflare.com",
-          "https://open.spotify.com",       // ← add this
-          "https://*.spotifycdn.com",      // ← covers embed-cdn.spotifycdn.com and similar
-          "https://*.scdn.co",    
-        ],
-        frameSrc: [
-        "'self'",
-        "https://open.spotify.com",       // ← needed for the embedded iframe player itself
-        "https://embed.spotify.com",
-      ],
-      connectSrc: [
-        "'self'",
-        "https://open.spotify.com",       // ← needed if the player makes XHR/fetch calls
-        "https://api.spotify.com",
-        "https://*.spotifycdn.com",
-        "https://*.scdn.co",
-      ],
-        styleSrc: [
-          "'self'",
-          "'unsafe-inline'",
-          "https://fonts.googleapis.com",
-        ],
-        fontSrc: ["'self'", "https://fonts.gstatic.com"],
-        imgSrc: ["'self'", "data:", "https://*.scdn.co", "blob:", "https:"],
-        connectSrc: ["'self'"],
-      },
-    },
+       defaultSrc: ["'self'"],
+       scriptSrc: [
+      "'self'",
+      "'unsafe-inline'",
+      "'unsafe-eval'",
+      "https://cdn.jsdelivr.net",
+      "https://cdnjs.cloudflare.com",
+      "https://open.spotify.com",
+      "https://*.spotifycdn.com",
+      "https://*.scdn.co",
+                 ],
+       frameSrc: [
+      "'self'",
+      "https://open.spotify.com",
+      "https://embed.spotify.com",
+                 ],
+       connectSrc: [
+      "'self'",
+      "https://open.spotify.com",
+      "https://api.spotify.com",
+      "https://*.spotifycdn.com",
+      "https://*.scdn.co",
+      "https://cdn.jsdelivr.net",
+      "https://storage.googleapis.com",
+    ],
+    styleSrc: [
+      "'self'",
+      "'unsafe-inline'",
+      "https://fonts.googleapis.com",
+    ],
+    fontSrc: ["'self'", "https://fonts.gstatic.com"],
+    imgSrc: ["'self'", "data:", "https://*.scdn.co", "blob:", "https:"],
+  },
+},
   })
 );
 app.use(cors());
