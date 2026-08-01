@@ -30,7 +30,7 @@ module.exports = {
   // IMPORTANT: Replace these placeholder answers with the real ones!
   faqAnswers: {
     1: "Aesthetic",   // "The word I say the most?"
-    2: "Hazel Brown",   // "Exact color of my eyes?"
+    2: "Hazel dark Brown",   // "Exact color of my eyes?"
     3: "Vampire diaries",   // "Most watched series of mine?"
     4: "Bombay Sapphire",   // "My favorite drink?"
   },
