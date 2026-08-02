@@ -19,7 +19,7 @@ module.exports = {
     "/assets/photo3.jpeg",
     "/assets/photo4.jpeg",
     "/assets/photo5.jpeg",
-    "/assets/photo6.png",
+    "/assets/photo6.jpeg",
   ],
 
   // ─── FAQ Page ─────────────────────────────────────────
