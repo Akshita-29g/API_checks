@@ -42,7 +42,7 @@
   height: 180px;
   position: relative;
   animation: bottleFloat 4s ease-in-out infinite;
-  filter: drop-shadow(0 10px 30px rgba(255, 107, 157, 0.3));
+ filter: drop-shadow(0 6px 14px rgba(255, 107, 157, 0.25));
 }
 
 @keyframes bottleFloat {
@@ -255,7 +255,7 @@
 
 .letter-quote {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   color: #6c5b7b;
   font-style: italic;
   line-height: 1.55;
@@ -273,6 +273,10 @@
 
 /* ─── Responsive ─────────────────────────────── */
 @media (max-width: 768px) {
+
+  .bottle {
+    filter: drop-shadow(0 4px 10px rgba(255, 107, 157, 0.18));
+  }
   .bottle {
     width: 65px;
     height: 150px;
