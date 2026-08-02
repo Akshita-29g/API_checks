@@ -140,8 +140,12 @@
 
 @media (max-width: 480px) {
   .library-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);  
     gap: var(--space-md);
+  }
+
+  .library-image-card {
+    aspect-ratio: 1 / 1; /* squarer crop reads as a compact thumbnail on small phones */
   }
 
   .library-prompt {

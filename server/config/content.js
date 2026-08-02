@@ -7,7 +7,7 @@
 
 module.exports = {
   // ─── Home Page ────────────────────────────────────────
-  romanticQuote: "Just got bored so here's something for you <3!",
+ romanticQuote: "As it's Friendship Day, and you're someone with 2kb memory size who forgets things — you even forgot to wish me Girlfriend's Day!!! But leave it.\nTbh, I'm not someone who does these kinds of things, but since someone just deactivated their Instagram, I had to.\nHappy Friendship Day, Nunu!\n(Sorry for being annoying and cringe, if I am.)\nNow continue",
 
   // ─── Library Page ─────────────────────────────────────
   // Replace these with actual image paths or URLs.

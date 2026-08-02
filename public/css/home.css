@@ -1,4 +1,4 @@
-/**
+/* *
  * home.css — Home Page Styles
  * =============================
  * Floating glass bottle, glowing particles,
@@ -255,12 +255,13 @@
 
 .letter-quote {
   font-family: var(--font-heading);
-  font-size: var(--font-size-lg);
+  font-size: 1.1rem;
   color: #6c5b7b;
   font-style: italic;
-  line-height: var(--line-height-base);
-  margin-bottom: var(--space-xl);
-  padding: 0 var(--space-md);
+  line-height: 1.55;
+  margin-bottom: var(--space-lg);
+  padding: 0 var(--space-sm);
+  white-space: pre-line;
 }
 
 .letter-arrow {
